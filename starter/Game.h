@@ -1,17 +1,17 @@
 #pragma once
 #include"opengl.h"
 #include "time.h"
-#include "FunkyCube.h"
 #include "GLSurface.h"
 #include "Camera.h"
 #include "Material.h"
+#include "GLShape.h"
 
 
 class Game
 {
     int height,width;
 
-	FunkyCube cube;
+	GLShape mShape;
 	GLSurface mPlane;
 	Camera mCamera;
 

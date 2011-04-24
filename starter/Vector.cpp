@@ -48,22 +48,12 @@ Vector Vector::normalize(){
 
 
 Vector Vector::operator*(double f){
-	Vector temp;
-	temp.x=this->x*f;
-	temp.y=this->y*f;
-	temp.z=this->z*f;
-	return temp;
-
+	return Vector(this->x*f,this->y*f,this->z*f);	
 }
 
 
 Vector Vector::operator-(Vector & f){
-	Vector temp;
-	temp.x =this->x-f.x;
-	temp.y=this->y-f.y;
-	temp.z=this->z-f.z;
-	return temp;
-
+	return Vector(this->x-f.x,this->y-f.y,this->z-f.z);
 }
 
 
@@ -81,7 +71,6 @@ Vector Vector::operator+=(Vector & f)
 	this->z += f.z;
 
 	return *this;
-
 }
 
 
@@ -113,3 +102,24 @@ Vector Vector::NormalVectorToPlane(Vector & vertexOne, Vector & vertexTwo, Vecto
 
 }
 
+
+void Vector::NormalVectorToPlane(float p1[3], float p2[3], float p3[3], float n[3])
+{
+
+	float v1[3],v2[3]; // two vectors
+
+	//calculate two vectors lying on the surface
+	// v1=p2-p1
+	// v2=p3-p2
+
+	for(int i=0;i<3;i++){
+		v1[i]=p2[i]-p1[i];
+		v2[i]=p3[i]-p2[i];
+	}
+
+	// calculate cross product of two vectors ( n= v1 x v2)
+	n[0]=v1[1]*v2[2] - v2[1]*v1[2];
+	n[1]=v1[2]*v2[0] - v2[2]*v1[0];
+	n[2]=v1[0]*v2[1] - v2[0]*v1[1];
+
+} //done

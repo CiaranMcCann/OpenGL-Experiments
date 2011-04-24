@@ -20,25 +20,36 @@ void GLSurface::draw()
 {
 	glPushMatrix();
 	glScaled(mScaleX, mScaleY, mScaleZ);
+	Vector t = Vector::NormalVectorToPlane(a,d,c);
+	Vector direction = t.normalize();
+
+	glNormal3d(direction.x, direction.y, direction.z);
 	glBegin(GL_QUADS);
 
 		glVertex3d(a.x, a.y, a.z);		// A 
 		glVertex3d(b.x, b.y, b.z);		// B
-		glVertex3d(c.x, c.y, b.z);		// C
+		glVertex3d(c.x, c.y, c.z);		// C
 		glVertex3d(d.x, d.y, d.z);		// D
 
 	glEnd();
 		
-		Vector t = Vector::NormalVectorToPlane(a,d,c);
-		Vector d = t.normalize();
+		
+	glPushAttrib(GL_COLOR_MATERIAL);
+	Material::getInstance()->currentMaterialChrome();
+	
+
 
 	glBegin(GL_LINES);
 	
 	glColor3f(1.0f,0.0f,0.0f);		
-	glVertex3d(  t.x , t.y , t.z);
+	glVertex3d(t.x , t.y , t.z);
 	glColor3f(0.0f,1.0f,0.0f);
-	glVertex3d(d.x,d.y,d.z);
+	glVertex3d(direction.x,direction.y,direction.z);
 
 	glEnd();
+	glPopAttrib();
+
+	
+
 	glPopMatrix();
 }

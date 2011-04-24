@@ -17,6 +17,8 @@ private:
 	GLfloat * goldSpecular;
 	GLfloat * goldShininess;
 
+
+
 	Material(void);
 	static Material * pInstance;
 
@@ -26,4 +28,5 @@ public:
 
 	//Sets current material type to gold
 	void currentMaterialGold();
+	void currentMaterialChrome();
 };
