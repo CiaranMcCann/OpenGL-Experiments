@@ -203,6 +203,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Terrain.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Texture.cpp"
 				>
 			</File>
@@ -258,6 +262,10 @@
 			</File>
 			<File
 				RelativePath=".\targetver.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Terrain.h"
 				>
 			</File>
 			<File

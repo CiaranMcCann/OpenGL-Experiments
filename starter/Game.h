@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Material.h"
 #include "GLShape.h"
+#include "Terrain.h";
 
 
 class Game
@@ -14,6 +15,7 @@ class Game
 	GLShape mShape;
 	GLSurface mPlane;
 	Camera mCamera;
+	Terrain mTerrain;
 
 public:
     BYTE keys[256];

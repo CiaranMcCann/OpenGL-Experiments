@@ -26,17 +26,17 @@ bool Game::Init(void)
     
     glEnable(GL_DEPTH_TEST); // check for depth
 	glEnable(GL_NORMALIZE);	// automatically convert normals to unit normals
-	glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 
 
 	GLfloat lightColor[] = {1.0, 1.0, 1.0, 1.0};
-	GLfloat lightPosition[] = {-10.0, 5.0, 0.0, 0.0};
-
+	
+	//GLfloat lightPosition[] = {-10.0, 5.0, 0.0, 0.0};
 
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, lightColor);
-	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+	//glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
     
     return true;
 }
@@ -62,29 +62,60 @@ bool Game::Draw(void)
 	glMatrixMode(GL_MODELVIEW); // reset modelview matrix
 	glLoadIdentity();
 
-	
+	//GLfloat lightPositionl[] = {-10.0, 5.0, 0.0, 0.0};
+	//glLightfv(GL_LIGHT0, GL_POSITION, lightPositionl);
+
+	static float angle = 0;
+	angle += 0.5;
 	   
 	mCamera.update();
 
+	GLShape light = GLShape(0.5,0.5,0.5);
+
+	static float theX = 10.0f;
+	static float theY = 5.0f;
 
 	////////////////////////////////
 	///Game Drawing code goes here
 	///////////////////////////////
 	Material::getInstance()->currentMaterialGold();
 
+	GLfloat lightPosition[] = {theX, theY, 0.0, 0.0};
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+
+	glPushMatrix();
+	glTranslated(theX, theY, 0.0);
+
+	if(GetKeyState('L')& 128)
+	{
+		theX -= 0.5;		
+		//glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+	}
+
+	if(GetKeyState('O')& 128)
+	{
+		theY += 0.5;		
+		//glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+	}
+
+	
+	light.draw();
+	glPopMatrix();
 	
 	
 	glPushMatrix();
 		glTranslated(0,2,0);
-		glRotated(45,0,1,0);
-		mShape.draw();	
+		glRotated(angle,0,1,0);
+		//mShape.draw();	
 	glPopMatrix();
 
 	
 
 	Material::getInstance()->currentMaterialChrome();
+
+		mTerrain.draw();
 	
-	mPlane.draw();
+	//mPlane.draw();
 
 	glBegin(GL_QUADS);
 

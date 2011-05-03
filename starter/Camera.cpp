@@ -2,7 +2,7 @@
 #include "Camera.h"
 
 Camera::Camera(void):
-	mViewReferencePiont(0,15,-25), 
+	mViewReferencePiont(0,15,-325), 
 	mCenterPiont(0,0,0),
 	mUpVector(0,1,0),
 	mDirection((mViewReferencePiont-mCenterPiont).normalize()),
